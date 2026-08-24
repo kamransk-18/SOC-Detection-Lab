@@ -47,7 +47,6 @@ sudo nano /etc/filebeat/filebeat.yml
 | 2 | `03-dashboard-home.png` | Dashboard home/overview after logging in as `admin` | Log in with the recovered credentials |
 | 3 | `04-archives-listing.png` | Terminal showing archive log files present and growing | `sudo ls -lh /var/ossec/logs/archives/` |
 | 4 | `05-archives-tail.png` | Live tail of `archives.json` showing raw events flowing in | `sudo tail -f /var/ossec/logs/archives/archives.json` |
-| 5 | `06-discover-archive-index.png` | Dashboard **Discover → wazuh-archive-\*** view | Open Discover, select the `wazuh-archive-*` index pattern |
 
 ## Analyst notes
 
