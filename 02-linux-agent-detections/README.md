@@ -144,28 +144,79 @@ sudo iptables -D INPUT -s KALI_IP -j DROP
 
 ---
 
-## Screenshot checklist
+## Screenshot Evidence
 
-| # | Suggested filename | What it captures | Command / action to run first |
-|---|---|---|---|
-| 1 | `01-agent-connected.png` | Dashboard → Agents showing this agent as "Active" | Complete enrolment, `systemctl start wazuh-agent` |
-| 2 | `02-suricata-installed.png` | Suricata version + rules downloaded | `sudo suricata -V` and `ls -lh /var/lib/suricata/rules/` |
-| 3 | `03-suricata-config-testpass.png` | Successful config test | `sudo suricata -T -c /etc/suricata/suricata.yaml` |
-| 4 | `04-suricata-running.png` | Suricata service active and eve.json populating | `sudo systemctl status suricata` + `sudo tail -f /var/log/suricata/eve.json` |
-| 5 | `05-nmap-scan-from-kali.png` | Kali terminal running the scan | `nmap -sS -Pn <Agent IP>` |
-| 6 | `06-suricata-alert-dashboard.png` | Wazuh dashboard alert triggered by the scan | (result of scan landing in the Manager) |
-| 7 | `07-auditd-active.png` | auditd service running | `sudo systemctl status auditd` |
-| 8 | `08-audit-rules-loaded.png` | Watch rules loaded | `sudo auditctl -l` |
-| 9 | `09-trigger-commands.png` | Terminal running wget/curl/nc/nmap | `wget ...`, `curl ...`, `nc -lvnp 4444`, `nmap localhost` |
-| 10 | `10-ausearch-capture.png` | ausearch confirming the event was captured | `sudo ausearch -k wget_execution` |
-| 11 | `11-local-rule-100300.png` | `local_rules.xml` showing the custom rule | Dashboard → Management → Rules |
-| 12 | `12-auditd-alert-dashboard.png` | Dashboard alert: "Potential malicious command execution detected via auditd" | Re-trigger `wget`/`curl` after rule + manager restart |
-| 13 | `13-active-response-config.png` | `ossec.conf` active-response block on Manager | `sudo nano /var/ossec/etc/ossec.conf` (Manager) |
-| 14 | `14-hydra-attack.png` | Kali terminal running the brute force | `hydra -l root -P pass.txt ssh://<Agent IP>` |
-| 15 | `15-iptables-block.png` | Kali IP dropped in the firewall table | `sudo iptables -L` |
-| 16 | `16-ssh-blocked.png` | SSH connection failing from Kali post-block | `ssh user@<Agent IP>` (run from Kali) |
-| 17 | `17-active-response-log.png` | `firewall-drop` executing in real time | `sudo tail -f /var/ossec/logs/active-responses.log` |
-| 18 | `18-brute-force-alert-dashboard.png` | Dashboard alert for the SSH brute force detection | (result of hydra attack) |
+### 01 — Agent Connected
+
+![Agent Connected](screenshots/01-agent-connected.png)
+
+### 02 — Suricata Installed
+
+![Suricata Installed](screenshots/02-suricata-installed.png)
+
+### 03 — Suricata Config Test Pass
+
+![Suricata Config Test Pass](screenshots/03-suricata-config-testpass.png)
+
+### 04 — Suricata Running
+
+![Suricata Running](screenshots/04-suricata-running.png)
+
+### 05 — Nmap Scan from Kali
+
+![Nmap Scan from Kali](screenshots/05-nmap-scan-from-kali.png)
+
+### 06 — Suricata Alert Dashboard
+
+![Suricata Alert Dashboard](screenshots/06-suricata-alert-dashboard.png)
+
+### 07 — auditd Active
+
+![auditd Active](screenshots/07-auditd-active.png)
+
+### 08 — Audit Rules Loaded
+
+![Audit Rules Loaded](screenshots/08-audit-rules-loaded.png)
+
+### 09 — Trigger Commands
+
+![Trigger Commands](screenshots/09-trigger-commands.png)
+
+### 10 — ausearch Capture
+
+![ausearch Capture](screenshots/10-ausearch-capture.png)
+
+### 11 — Local Rule 100300
+
+![Local Rule 100300](screenshots/11-local-rule-100300.png)
+
+### 12 — auditd Alert Dashboard
+
+![auditd Alert Dashboard](screenshots/12-auditd-alert-dashboard.png)
+
+### 13 — Active Response Config
+
+![Active Response Config](screenshots/13-active-response-config.png)
+
+### 14 — Hydra Attack
+
+![Hydra Attack](screenshots/14-hydra-attack.png)
+
+### 15 — iptables Block
+
+![iptables Block](screenshots/15-iptables-block.png)
+
+### 16 — SSH Blocked
+
+![SSH Blocked](screenshots/16-ssh-blocked.png)
+
+### 17 — Active Response Log
+
+![Active Response Log](screenshots/17-active-response-log.png)
+
+### 18 — Brute Force Alert Dashboard
+
+![Brute Force Alert Dashboard](screenshots/18-brute-force-alert-dashboard.png)
 
 ## Analyst notes
 
