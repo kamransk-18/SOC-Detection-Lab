@@ -41,22 +41,12 @@ sudo nano /etc/filebeat/filebeat.yml
 
 ## Screenshot Evidence
 
-### 01 — Dashboard Login
-
-![Dashboard Login](screenshots/02-dashboard-login.png)
-
-### 02 — Dashboard Home
-
-![Dashboard Home](screenshots/03-dashboard-home.png)
-
-### 03 — Archives Listing
-
-![Archives Listing](screenshots/04-archives-listing.png)
-
-### 04 — Archives Tail
-
-![Archives Tail](screenshots/05-archives-tail.png)
-
+| # | Screenshot | What it captures |
+|---|---|---|
+| 1 | ![Dashboard Login](screenshots/02-dashboard-login.png) | Wazuh Dashboard login page loading successfully in the browser. |
+| 2 | ![Dashboard Home](screenshots/03-dashboard-home.png) | Wazuh Dashboard home/overview displayed after logging in with the recovered administrator credentials. |
+| 3 | ![Archives Listing](screenshots/04-archives-listing.png) | Manager terminal showing that the Wazuh archive log files are present and being generated. |
+| 4 | ![Archives Tail](screenshots/05-archives-tail.png) | Live `archives.json` output showing raw events flowing into the Wazuh archive log. |
 ## Analyst notes
 
 - The admin password from install is a one-time credential — in a real deployment this would be rotated immediately and stored in a secrets manager, not left as the standing admin password.
