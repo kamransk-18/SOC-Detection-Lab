@@ -1,4 +1,4 @@
-# 04 — Cross-Platform Detections (Wazuh Ubuntu Agent and/or Kamran-PC)
+# 04 — Cross-Platform Detections (Wazuh Ubuntu Agent and/or Windows 11)
 
 File Integrity Monitoring, CVE-based vulnerability detection, VirusTotal file reputation, and a simulated phishing-log detection — all run identically regardless of endpoint OS.
 
@@ -104,7 +104,7 @@ Check **Agents → Security events**.
 |---|---|---|---|
 | 1 | `01-fim-config-linux.png` | `/root` directory monitoring config | Open `ossec.conf` on the Linux agent |
 | 2 | `02-fim-trigger-linux.png` | Test file being created | `touch /root/testfile` |
-| 3 | `03-fim-config-windows.png` | `C:\Users\Public` monitoring config | Open `ossec.conf` on Kamran-PC |
+| 3 | `03-fim-config-windows.png` | `C:\Users\Public` monitoring config | Open `ossec.conf` on Windows 11 |
 | 4 | `04-fim-trigger-windows.png` | Test file being created | `New-Item -Path "C:\Users\Public\testfile.txt" -ItemType File` |
 | 5 | `05-syscheck-discover.png` | Dashboard **Discover → syscheck** showing both events | (after both triggers above) |
 | 6 | `06-vuln-detector-config.png` | `vulnerability-detector` enabled in `ossec.conf` | Open Manager `ossec.conf` |
@@ -112,7 +112,7 @@ Check **Agents → Security events**.
 | 8 | `08-vt-rules-integration.png` | `local_rules.xml` rules 100200/100201 + `<integration>` block (**redact your API key**) | Open the config files |
 | 9 | `09-eicar-download.png` | EICAR file downloaded to the agent | `curl -Lo /root/eicar.com ...` (or Windows equivalent) |
 | 10 | `10-vt-alert-dashboard.png` | Dashboard alert showing the VirusTotal verdict on the EICAR file | (result of step 9) |
-| 11 | `11-phishing-rules.png` | `local_rules.xml` rules 100500–100503 | Dashboard → Management → Rules |
+| 11 | `11-phishing-rules.png` | `local_rules.xml` rules 100500–100501 | Dashboard → Management → Rules |
 | 12 | `12-phishing-trigger.png` | The fake phishing log line being written | `echo "From: support@paypa1.com ..." \| sudo tee -a /var/log/phishing-mails.log` |
 | 13 | `13-phishing-alert-dashboard.png` | Dashboard → Agents → Security events showing all four phishing rules firing | (result of step 12) |
 
