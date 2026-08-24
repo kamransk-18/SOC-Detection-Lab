@@ -106,7 +106,7 @@ Check **Agents → Security events**.
 | 2 | ![FIM Linux Trigger](screenshots/02-fim-trigger-linux.png) | Linux test file being created in `/root` to generate an FIM event. |
 | 3 | ![FIM Windows Config](screenshots/03-fim-config-windows.png) | Windows Wazuh agent `ossec.conf` showing `C:\Users\Public` configured for FIM. |
 | 4 | ![FIM Windows Trigger](screenshots/04-fim-trigger-windows.png) | Windows test file being created in `C:\Users\Public` to generate an FIM event. |
-| 5 | ![Syscheck Discover](./screenshots/05-syscheck-discover.png) | Wazuh Dashboard → Discover → `syscheck` showing the Linux and Windows FIM events. |
+| 5 | ![Syscheck Linux](./screenshots/05-syscheck-discover-Linux.png) ![Syscheck Windows](./screenshots/05-syscheck-discover-Windows.png) | Wazuh Dashboard → Discover → `syscheck` showing the Linux and Windows FIM events. |
 | 6 | ![Vulnerability Detector Config](screenshots/06-vuln-detector-config.png) | Wazuh Manager `ossec.conf` showing the `vulnerability-detector` module enabled. |
 | 7 | ![Vulnerabilities Module](screenshots/07-vulnerabilities-module.png) | Wazuh Dashboard Vulnerabilities module showing vulnerability findings for both connected agents. |
 | 8 | ![VirusTotal Rules Integration](screenshots/08-vt-rules-integration.png) | Manager `local_rules.xml` showing rules `100200`/`100201` and the VirusTotal `<integration>` block. |
