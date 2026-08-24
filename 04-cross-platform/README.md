@@ -98,23 +98,23 @@ Check **Agents → Security events**.
 
 ---
 
-## Screenshot checklist
+## Screenshot Evidence
 
-| # | Suggested filename | What it captures | Command / action to run first |
-|---|---|---|---|
-| 1 | `01-fim-config-linux.png` | `/root` directory monitoring config | Open `ossec.conf` on the Linux agent |
-| 2 | `02-fim-trigger-linux.png` | Test file being created | `touch /root/testfile` |
-| 3 | `03-fim-config-windows.png` | `C:\Users\Public` monitoring config | Open `ossec.conf` on Windows 11 |
-| 4 | `04-fim-trigger-windows.png` | Test file being created | `New-Item -Path "C:\Users\Public\testfile.txt" -ItemType File` |
-| 5 | `05-syscheck-discover.png` | Dashboard **Discover → syscheck** showing both events | (after both triggers above) |
-| 6 | `06-vuln-detector-config.png` | `vulnerability-detector` enabled in `ossec.conf` | Open Manager `ossec.conf` |
-| 7 | `07-vulnerabilities-module.png` | Dashboard **Vulnerabilities** module listing findings for both agents | Wait for the detector's first scan cycle |
-| 8 | `08-vt-rules-integration.png` | `local_rules.xml` rules 100200/100201 + `<integration>` block (**redact your API key**) | Open the config files |
-| 9 | `09-eicar-download.png` | EICAR file downloaded to the agent | `curl -Lo /root/eicar.com ...` (or Windows equivalent) |
-| 10 | `10-vt-alert-dashboard.png` | Dashboard alert showing the VirusTotal verdict on the EICAR file | (result of step 9) |
-| 11 | `11-phishing-rules.png` | `local_rules.xml` rules 100500–100501 | Dashboard → Management → Rules |
-| 12 | `12-phishing-trigger.png` | The fake phishing log line being written | `echo "From: support@paypa1.com ..." \| sudo tee -a /var/log/phishing-mails.log` |
-| 13 | `13-phishing-alert-dashboard.png` | Dashboard → Agents → Security events showing all four phishing rules firing | (result of step 12) |
+| # | Screenshot | What it captures |
+|---|---|---|
+| 1 | ![FIM Linux Config](screenshots/01-fim-config-linux.png) | Linux Wazuh agent `ossec.conf` showing `/root` directory configured for File Integrity Monitoring (FIM). |
+| 2 | ![FIM Linux Trigger](screenshots/02-fim-trigger-linux.png) | Linux test file being created in `/root` to generate an FIM event. |
+| 3 | ![FIM Windows Config](screenshots/03-fim-config-windows.png) | Windows Wazuh agent `ossec.conf` showing `C:\Users\Public` configured for FIM. |
+| 4 | ![FIM Windows Trigger](screenshots/04-fim-trigger-windows.png) | Windows test file being created in `C:\Users\Public` to generate an FIM event. |
+| 5 | ![Syscheck Discover](screenshots/05-syscheck-discover-Linux.png/05-syscheck-discover-Windows.png) | Wazuh Dashboard Discover → `syscheck` showing the Linux and Windows FIM events. |
+| 6 | ![Vulnerability Detector Config](screenshots/06-vuln-detector-config.png) | Wazuh Manager `ossec.conf` showing the `vulnerability-detector` module enabled. |
+| 7 | ![Vulnerabilities Module](screenshots/07-vulnerabilities-module.png) | Wazuh Dashboard Vulnerabilities module showing vulnerability findings for both connected agents. |
+| 8 | ![VirusTotal Rules Integration](screenshots/08-vt-rules-integration.png) | Manager `local_rules.xml` showing rules `100200`/`100201` and the VirusTotal `<integration>` block. |
+| 9 | ![EICAR Download](screenshots/09-eicar-download.png) | EICAR test file being downloaded to the agent as the safe malware-detection test artifact. |
+| 10 | ![VirusTotal Alert Dashboard](screenshots/10-vt-alert-dashboard.png) | Wazuh Dashboard alert showing the VirusTotal verdict for the EICAR test file. |
+| 11 | ![Phishing Rules](screenshots/11-phishing-rules.png) | Manager `local_rules.xml` showing the phishing detection rules `100500`–`100501`. |
+| 12 | ![Phishing Trigger](screenshots/12-phishing-trigger.png) | Fake phishing log entry being written to `/var/log/phishing-mails.log` to trigger the custom rules. |
+| 13 | ![Phishing Alert Dashboard](screenshots/13-phishing-alert-dashboard.png) | Wazuh Dashboard → Agents → Security events showing the phishing detection rules firing. |
 
 ## Analyst notes
 
