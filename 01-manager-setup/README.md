@@ -43,12 +43,11 @@ sudo nano /etc/filebeat/filebeat.yml
 
 | # | Suggested filename | What it captures | Command / action to run first |
 |---|---|---|---|
-| 1 | `01-install-output.png` | Terminal output of the install script completing (**redact the printed password**) | `sudo bash wazuh-install.sh -a` |
-| 2 | `02-dashboard-login.png` | Dashboard login page loading in the browser | Navigate to `https://<Wazuh Host IP>` |
-| 3 | `03-dashboard-home.png` | Dashboard home/overview after logging in as `admin` | Log in with the recovered credentials |
-| 4 | `04-archives-listing.png` | Terminal showing archive log files present and growing | `sudo ls -lh /var/ossec/logs/archives/` |
-| 5 | `05-archives-tail.png` | Live tail of `archives.json` showing raw events flowing in | `sudo tail -f /var/ossec/logs/archives/archives.json` |
-| 6 | `06-discover-archive-index.png` | Dashboard **Discover → wazuh-archive-\*** view | Open Discover, select the `wazuh-archive-*` index pattern |
+| 1 | `02-dashboard-login.png` | Dashboard login page loading in the browser | Navigate to `https://<Wazuh Host IP>` |
+| 2 | `03-dashboard-home.png` | Dashboard home/overview after logging in as `admin` | Log in with the recovered credentials |
+| 3 | `04-archives-listing.png` | Terminal showing archive log files present and growing | `sudo ls -lh /var/ossec/logs/archives/` |
+| 4 | `05-archives-tail.png` | Live tail of `archives.json` showing raw events flowing in | `sudo tail -f /var/ossec/logs/archives/archives.json` |
+| 5 | `06-discover-archive-index.png` | Dashboard **Discover → wazuh-archive-\*** view | Open Discover, select the `wazuh-archive-*` index pattern |
 
 ## Analyst notes
 
