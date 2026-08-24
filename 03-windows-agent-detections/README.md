@@ -1,4 +1,4 @@
-# 03 — Windows Agent Detections (Kamran-PC, Windows 11)
+# 03 — Windows Agent Detections (Windows 11)
 
 Sysmon-based telemetry, a PowerShell execution detection, and a fully automated host-isolation response to brute force.
 
@@ -92,24 +92,21 @@ netsh advfirewall firewall add rule name="Allow-Manager-In" dir=in action=allow 
 
 ---
 
-## Screenshot checklist
+## Screenshot Evidence
 
-| # | Suggested filename | What it captures | Command / action to run first |
-|---|---|---|---|
-| 1 | `01-agent-enrolled.png` | Dashboard → Agents showing Kamran-PC as "Active" | `NET START WazuhSvc` |
-| 2 | `02-sysmon-install.png` | Sysmon install output | `.\Sysmon64.exe -accepteula -i .\sysmonconfig.xml` |
-| 3 | `03-sysmon-eventviewer.png` | Event Viewer showing Sysmon Operational events | Trigger any process on Kamran-PC, then open Event Viewer |
-| 4 | `04-manager-sysmon-arriving.png` | Manager terminal confirming Sysmon events arriving | `sudo tail -f /var/ossec/logs/archives/archives.json \| grep Sysmon` |
-| 5 | `05-local-rule-100900.png` | `local_rules.xml` showing the PowerShell rule | Dashboard → Management → Rules |
-| 6 | `06-powershell-launch.png` | PowerShell being launched on Kamran-PC | `powershell.exe` |
-| 7 | `07-powershell-alert-dashboard.png` | Dashboard → Agents → Security events showing the alert | (result of step 6) |
-| 8 | `08-isolation-script.png` | Contents of `host-isolation.cmd` | Open the file after creating it |
-| 9 | `09-active-response-manager-config.png` | Manager `ossec.conf` tying `host-isolation` to rules 60122/60204 | Open the config on Wazuh Host |
-| 10 | `10-hydra-attack-windows.png` | Kali terminal running the brute force against Kamran-PC | `hydra -l Administrator -P rockyou.txt ssh://<Kamran-PC IP>` |
-| 11 | `11-netadapter-disabled.png` | `Get-NetAdapter` showing the adapter as **Disabled** | `Get-NetAdapter` (run right after the attack triggers) |
-| 12 | `12-isolation-alert-dashboard.png` | Dashboard alert confirming detection + the active response firing | (result of step 10) |
-| 13 | `13-netadapter-restored.png` | Adapter back to **Up** after manual restore | `Enable-NetAdapter -Name "Ethernet" -Confirm:$false` |
-
+| # | Screenshot | What it captures |
+|---|---|---|
+  | 1 | ![Sysmon Event Viewer](screenshots/03-sysmon-eventviewer.png) | Windows Event Viewer showing Sysmon Operational events being generated on Windows 11. |
+| 2 | ![Manager Sysmon Arriving](screenshots/04-manager-sysmon-arriving.png) | Wazuh Manager terminal confirming Sysmon events are arriving in the archived event stream. |
+| 3 | ![Local Rule 100900](screenshots/05-local-rule-100900.png) | Wazuh `local_rules.xml` showing the custom PowerShell detection rule `100900`. |
+| 4 | ![PowerShell Launch](screenshots/06-powershell-launch.png) | PowerShell being launched on Windows 11 to trigger the custom detection rule. |
+| 5 | ![PowerShell Alert Dashboard](screenshots/07-powershell-alert-dashboard.png) | Wazuh Dashboard → Agents → Security events showing the PowerShell detection alert. |
+| 6 | ![Isolation Script](screenshots/08-isolation-script.png) | Contents of `host-isolation.cmd`, showing the Windows host-isolation response script. |
+| 7 | ![Active Response Manager Config](screenshots/09-active-response-manager-config.png) | Wazuh Manager `ossec.conf` showing `host-isolation` configured as an active response for rules `60122/60204`. |
+| 8 | ![Hydra Attack Windows](screenshots/10-hydra-attack-windows.png) | Kali terminal running the SSH brute-force test against Windows 11. |
+| 9 | ![NetAdapter Disabled](screenshots/11-netadapter-disabled.png) | PowerShell `Get-NetAdapter` output showing the network adapter in the **Disabled** state after host isolation. |
+| 10 | ![Isolation Alert Dashboard](screenshots/12-isolation-alert-dashboard.png) | Wazuh Dashboard alert confirming the detection and execution of the host-isolation active response. |
+| 11 | ![NetAdapter Restored](screenshots/13-netadapter-restored.png) | Windows network adapter restored to the **Up** state after manually re-enabling it. |
 ## Analyst notes
 
 - **Sysmon/PowerShell:** matching purely on `powershell.exe` in the image path is broad — real PowerShell attacks (encoded commands, `-nop -w hidden`, unusual parent process like `winword.exe`) need a more specific rule; this version is a v1 baseline you'd iterate on.
