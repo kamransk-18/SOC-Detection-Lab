@@ -39,14 +39,23 @@ sudo tail -f /var/ossec/logs/archives/archives.json
 sudo nano /etc/filebeat/filebeat.yml
 ```
 
-## Screenshot checklist
+## Screenshot Evidence
 
-| # | Suggested filename | What it captures | Command / action to run first |
-|---|---|---|---|
-| 1 | `02-dashboard-login.png` | Dashboard login page loading in the browser | Navigate to `https://<Wazuh Host IP>` |
-| 2 | `03-dashboard-home.png` | Dashboard home/overview after logging in as `admin` | Log in with the recovered credentials |
-| 3 | `04-archives-listing.png` | Terminal showing archive log files present and growing | `sudo ls -lh /var/ossec/logs/archives/` |
-| 4 | `05-archives-tail.png` | Live tail of `archives.json` showing raw events flowing in | `sudo tail -f /var/ossec/logs/archives/archives.json` |
+### 01 — Dashboard Login
+
+![Dashboard Login](screenshots/02-dashboard-login.png)
+
+### 02 — Dashboard Home
+
+![Dashboard Home](screenshots/03-dashboard-home.png)
+
+### 03 — Archives Listing
+
+![Archives Listing](screenshots/04-archives-listing.png)
+
+### 04 — Archives Tail
+
+![Archives Tail](screenshots/05-archives-tail.png)
 
 ## Analyst notes
 
