@@ -28,17 +28,17 @@ curl -X POST https://<n8n-host>/webhook/<webhook-id> \
 ```
 Use a known-malicious published hash (e.g. the EICAR file's SHA256) to exercise the **Hash Found** branch, and the hash of a benign file you created yourself to exercise **Hash Not Found**.
 
-## Screenshot checklist
+## Screenshot Evidence
 
-| # | Suggested filename | What it captures | Command / action to run first |
-|---|---|---|---|
-| 1 | `01-n8n-workflow-canvas.png` | Full workflow canvas (Webhook → Edit Fields → VT lookup → branch → Telegram) | Open the workflow in n8n's editor |
-| 2 | `02-n8n-webhook-trigger.png` | n8n execution log showing the incoming webhook POST | `curl -X POST https://<n8n-host>/webhook/<id> -d '{"hash":"..."}'` |
-| 3 | `03-n8n-vt-response.png` | VirusTotal hash-checking node's output pane showing the raw API response | Click the node after a manual execution |
-| 4 | `04-n8n-hash-found-branch.png` | Execution trace highlighting the **true** path | Trigger with a known-malicious hash |
-| 5 | `05-telegram-alert-found.png` | The actual Telegram message received ("Hash Found") | (result of step 4, captured on your phone/Telegram client) |
-| 6 | `06-n8n-hash-notfound-branch.png` | Execution trace highlighting the **false** path | Trigger with a benign/unknown hash |
-| 7 | `07-telegram-alert-notfound.png` | The Telegram message received ("Hash Not Found") | (result of step 6) |
+| # | Screenshot | What it captures |
+|---|---|---|
+| 1 | ![n8n Workflow Canvas](screenshots/01-n8n-workflow-canvas.png) | Full n8n workflow canvas showing **Webhook → Edit Fields → VirusTotal lookup → Branch → Telegram**. |
+| 2 | ![n8n Webhook Trigger](screenshots/02-n8n-webhook-trigger.png) | n8n execution showing the incoming **webhook POST** and the submitted file hash. |
+| 3 | ![VirusTotal Response](screenshots/03-n8n-vt-response.png) | VirusTotal hash-checking node output showing the **raw API response**. |
+| 4 | ![Hash Found Branch](screenshots/04-n8n-hash-found-branch.png) | n8n execution trace showing the **true / Hash Found branch** after the VirusTotal lookup. |
+| 5 | ![Telegram Hash Found](screenshots/05-telegram-alert-found.png) | Actual Telegram notification received when the submitted hash is **found**. |
+| 6 | ![Hash Not Found Branch](screenshots/06-n8n-hash-notfound-branch.png) | n8n execution trace showing the **false / Hash Not Found branch** for a benign or unknown hash. |
+| 7 | ![Telegram Hash Not Found](screenshots/07-telegram-alert-notfound.png) | Actual Telegram notification received when the submitted hash is **not found**. |
 
 ## Analyst notes
 
