@@ -12,7 +12,7 @@ Demonstrates end-to-end SOC workflows: log ingestion, custom detection rules, MI
 |---|---|---|
 | Wazuh Host | Wazuh Manager + Indexer + Dashboard | Ubuntu Server 22.04 |
 | Wazuh Ubuntu Agent | Wazuh Agent #1 (Linux endpoint) | Ubuntu Server 22.04 |
-| Kamran-PC | Wazuh Agent #2 (Windows endpoint) | Windows 11 |
+| Windows 11 | Wazuh Agent #2 (Windows endpoint) | Windows 11 |
 | Kali Machine | Attacker | Kali Linux |
 
 All four VMs sit on the same host-only/NAT network. Note each VM's IP before starting.
@@ -21,7 +21,7 @@ All four VMs sit on the same host-only/NAT network. Note each VM's IP before sta
 flowchart LR
     Kali["Kali Machine\n(Attacker)"]
     Linux["Wazuh Ubuntu Agent\n(Linux endpoint)"]
-    Win["Kamran-PC\n(Windows 11 endpoint)"]
+    Win["Windows 11\n(Windows 11 endpoint)"]
     Manager["Wazuh Host\nManager + Indexer + Dashboard"]
 
     Kali -- "nmap / hydra\n(attacks)" --> Linux
@@ -37,12 +37,12 @@ flowchart LR
 | Tool | Purpose | Runs on |
 |---|---|---|
 | Wazuh Manager / Indexer / Dashboard | SIEM core — log collection, rules engine, alerting, visualization | Wazuh Host |
-| Wazuh Agent | Log/event forwarding | Wazuh Ubuntu Agent, Kamran-PC |
+| Wazuh Agent | Log/event forwarding | Wazuh Ubuntu Agent, Windows 11 |
 | Suricata | Network intrusion detection (NIDS) | Wazuh Ubuntu Agent |
 | auditd | Linux command/process auditing | Wazuh Ubuntu Agent |
-| Sysmon | Windows process/event telemetry | Kamran-PC |
+| Sysmon | Windows process/event telemetry | Windows 11 |
 | iptables | Active-response firewall blocking | Wazuh Ubuntu Agent |
-| Windows Firewall / netsh | Active-response host isolation | Kamran-PC |
+| Windows Firewall / netsh | Active-response host isolation | Windows 11 |
 | VirusTotal API | File reputation lookups on FIM events | Wazuh Host |
 | n8n | Standalone hash-lookup + alerting workflow, decoupled from the SIEM | External (n8n host) |
 | Telegram Bot API | Push alerting for the n8n hash-verdict workflow | External (n8n host) |
